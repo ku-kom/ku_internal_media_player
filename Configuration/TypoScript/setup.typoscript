@@ -1,0 +1,13 @@
+##############
+#### PAGE ####
+##############
+
+page = PAGE
+page {
+	includeCSS {
+        
+    }
+    includeJSFooter {
+        ku_internal_media_player = EXT:ku_internal_media_player/Resources/Public/JavaScript/Dist/ku-internal-media-player.min.js
+    }
+}

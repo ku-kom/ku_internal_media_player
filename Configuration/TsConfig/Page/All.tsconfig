@@ -1,0 +1,6 @@
+#
+# PageTS for KU Scroll indicator
+#
+
+@import 'EXT:ku_internal_media_player/Configuration/TsConfig/Page/TCEFORM.tsconfig'
+@import 'EXT:ku_internal_media_player/Configuration/TsConfig/Page/TCEMAIN.tsconfig'

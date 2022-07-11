@@ -1,0 +1,48 @@
+#
+# TCEFORM
+#
+TCEFORM {
+    tt_content {
+        header_position {
+           types {
+                ku_internal_media_player {
+                    removeItems = center
+                }
+           }
+        }
+        header {
+             types {
+                ku_internal_media_player {
+                    config {
+                        eval = required
+                        max = 100
+                    }
+                }
+           }
+        }
+
+        header_layout {
+           types {
+                ku_internal_media_player {
+                    disabled = 1
+                }
+            }
+        }
+
+        background_image {
+            types {
+                ku_internal_media_player {
+                    disabled = 1
+                }
+            }
+        }
+
+        background_image_options {
+            types {
+                ku_internal_media_player {
+                    disabled = 1
+                }
+            }
+        }
+    }
+}
