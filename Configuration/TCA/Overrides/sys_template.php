@@ -8,11 +8,11 @@ call_user_func(function()
     $extensionKey = 'ku_internal_media_player';
 
     /**
-     * Default TypoScript for KuScrollIndicator
+     * Default TypoScript for KU Internal Media Player
      */
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
         $extensionKey,
         'Configuration/TypoScript',
-        'KU Scroll iondicator'
+        'KU Internal Media Player'
     );
 });

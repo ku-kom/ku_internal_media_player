@@ -1,0 +1,18 @@
+// Add to Content element Wizard
+
+mod.wizards.newContentElement.wizardItems {
+   // Add to tab "Common"
+   media {
+      elements {
+         ku_internal_media_player {
+            iconIdentifier = ku-internal-media-player-icon
+            title = LLL:EXT:ku_internal_media_player/Resources/Private/Language/locallang_be.xlf:title
+            description = LLL:EXT:ku_internal_media_player/Resources/Private/Language/locallang_be.xlf:description
+            tt_content_defValues {
+               CType = ku_internal_media_player
+            }
+         }
+      }
+      show := addToList(ku_internal_media_player)
+   }
+}

@@ -8,6 +8,30 @@ page {
         
     }
     includeJSFooter {
-        ku_internal_media_player = EXT:ku_internal_media_player/Resources/Public/JavaScript/Dist/ku-internal-media-player.min.js
+        # ku_internal_media_player = EXT:ku_internal_media_player/Resources/Public/JavaScript/Dist/ku-internal-media-player.min.js
     }
+}
+
+################################
+#### INTERNAL MEDIA PLAYER #####
+################################
+# tt_content.ku_internal_media_player >
+tt_content.ku_internal_media_player =< lib.contentElement
+tt_content.ku_internal_media_player {
+	templateName = InternalMediaPlayer
+	templateRootPaths.10 = EXT:ku_internal_media_player/Resources/Private/Templates/ContentElements/
+	partialRootPaths {
+		10 = EXT:ku_internal_media_player/Resources/Private/Partials/ContentElements/
+		# Fallback to templates from other extensions:
+		20 = EXT:ku_prototype/Resources/Private/Partials/ContentElements/
+		30 = EXT:bootstrap_package/Resources/Private/Partials/ContentElements/
+	}
+
+	dataProcessing {
+		# Handle media upload:
+		10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+		10 {
+			references.fieldName = assets
+		}
+	}
 }

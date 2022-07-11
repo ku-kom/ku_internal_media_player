@@ -1,5 +1,5 @@
-Sitepackage for the project "KU Scroll indicator"
+Sitepackage for the project "KU internal media player"
 ==============================================================
 
-Adds scroll progress bar at the top of the page.
+Plays (and loops) internal media files such as .mp4, .ogg, etc. including only play/pause button.
 TYPO3 v. 11.5
