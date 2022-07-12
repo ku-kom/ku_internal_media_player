@@ -12,7 +12,7 @@ defined('TYPO3_MODE') or die();
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
     'tt_content',
     'CType',
-        [
+    [
             'LLL:EXT:ku_internal_media_player/Resources/Private/Language/locallang_be.xlf:title',
             'ku_internal_media_player',
             'ku-image-with-overlay-icon',
