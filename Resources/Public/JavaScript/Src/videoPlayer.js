@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   
-    const videos = document.querySelectorAll('.video-container');
+    const videos = document.querySelectorAll('figure.video');
     if (!videos) {
       return;
     }
@@ -34,8 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
     class Video {
       constructor(video) {
         this.videoContainer = video;
+        // Append button
         this.videoContainer.insertAdjacentHTML('beforeend', button);
         this.video = this.videoContainer.querySelector('video');
+        // Remove controls
+        // this.video.removeAttribute('controls'); 
         this.btn = this.videoContainer.querySelector('.play-pause-button');
         this.prefersReducedMotion();
         this.addEventListeners();

@@ -7,7 +7,19 @@
     </f:section>
 </f:spaceless>
 <f:section name="InternalMediaPlayer">
-    <div class="video-container">
-        <f:render partial="Media/Gallery" arguments="{_all}" />
-    </div>
+    <f:debug title="" inline="">{_all}</f:debug>
+    <f:if condition="{files}">
+        <f:for each="{files}" as="file" iteration="fileIteration">
+            <figure class="video">
+                <div class="embed embed-responsive embed-responsive-16by9">
+                    <f:media class="embed-responsive-item" file="{file}" alt="{file.properties.alternative}" title="{file.properties.title}" additionalConfig="{loop: '1', autoplay: '1'}" />
+                </div>
+                <f:if condition="{file.properties.description}">
+                    <figcaption class="caption">
+                        <f:format.nl2br>{file.properties.description}</f:format.nl2br>
+                    </figcaption>
+                </f:if>
+            </figure>
+        </f:for>
+    </f:if>
 </f:section>

@@ -15,6 +15,9 @@
         <trans-unit id="loop" resname="loop">
             <source>Loop - infinite playing</source>
         </trans-unit>
+        <trans-unit id="autoplay" resname="autoplay">
+            <source>Autoplay</source>
+        </trans-unit>
         </body>
     </file>
 </xliff>

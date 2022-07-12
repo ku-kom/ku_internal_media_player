@@ -8,7 +8,7 @@
 
 defined('TYPO3_MODE') or die();
 
-// KU image with overlay box CType select
+// KU internal media player CType select
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
     'tt_content',
     'CType',
@@ -21,7 +21,42 @@ defined('TYPO3_MODE') or die();
     'after'
 );
 
-// KU image with overlay palette
+// \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', [
+//     'ku_internal_media_player_autoplay' => [
+//         'exclude' => 0,
+//         'label' => 'LLL:EXT:ku_internal_media_player/Resources/Private/Language/locallang_be.xlf:autoplay',
+//         'config' => [
+//             'type' => 'check',
+//             'renderType' => 'checkboxToggle',
+//             'items' => [
+//                 [
+//                     0 => '0',
+//                     1 => '1',
+//                     'labelChecked' => 'Enabled',
+//                     'labelUnchecked' => 'Disabled',
+//                 ],
+//             ],
+//         ],
+//     ],
+//     'ku_internal_media_player_loop' => [
+//         'exclude' => 0,
+//         'label' => 'LLL:EXT:ku_internal_media_player/Resources/Private/Language/locallang_be.xlf:loop',
+//         'config' => [
+//             'type' => 'check',
+//             'renderType' => 'checkboxToggle',
+//             'items' => [
+//                 [
+//                     0 => '0',
+//                     1 => '1',
+//                     'labelChecked' => 'Enabled',
+//                     'labelUnchecked' => 'Disabled',
+//                 ],
+//             ],
+//         ],
+//     ],
+// ]);
+
+// KU internal media selector
 $ku_internal_media_player = [
     'showitem' => '
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
