@@ -1,11 +1,11 @@
 /*
  * Script for html5 multiple videos - inserts and toggles play/pause button, nothing else.
  * Markup:
- * <div class="video-container">
+ * <figure class="video">
  *  <video autoplay="" class="video" loop="" muted="" playsinline="" poster="" preload="metadata">
  *     <source src="file-path.mp4">
  *   </video>
- * </div>
+ * </figure>
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!videos) {
         return;
     }
-    const button = '<button aria-label="' + translations.pause + '" aria-pressed="false" class="play-pause-button" type="button"></button>';
+    const button = `<button aria-label="${translations.pause}" aria-pressed="false" class="video-button" type="button"></button>`;
 
     class Video {
         constructor(video) {
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.video = this.videoContainer.querySelector('video');
             // Remove controls
             // this.video.removeAttribute('controls'); 
-            this.btn = this.videoContainer.querySelector('.play-pause-button');
+            this.btn = this.videoContainer.querySelector('.video-button');
             this.prefersReducedMotion();
             this.addEventListeners();
         }
@@ -60,14 +60,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         playVideo() {
             this.video.play();
-            this.btn.classList.remove('paused');
+            this.btn.classList.remove('pause-fill');
+            this.btn.classList.add('play-fill');
             this.btn.setAttribute('aria-pressed', 'false');
             this.btn.setAttribute('aria-label', translations.pause);
         }
 
         pauseVideo() {
             this.video.pause();
-            this.btn.classList.add('paused');
+            this.btn.classList.remove('play-fill');
+            this.btn.classList.add('pause-fill');
             this.btn.setAttribute('aria-pressed', 'true');
             this.btn.setAttribute('aria-label', translations.play);
 
