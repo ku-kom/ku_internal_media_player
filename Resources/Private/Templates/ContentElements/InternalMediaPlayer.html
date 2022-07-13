@@ -7,12 +7,11 @@
     </f:section>
 </f:spaceless>
 <f:section name="InternalMediaPlayer">
-    <f:debug title="" inline="">{_all}</f:debug>
     <f:if condition="{files}">
         <f:for each="{files}" as="file" iteration="fileIteration">
             <figure class="video">
                 <div class="embed embed-responsive embed-responsive-16by9">
-                    <f:media class="embed-responsive-item" file="{file}" alt="{file.properties.alternative}" title="{file.properties.title}" additionalConfig="{loop: '1', autoplay: '1'}" />
+                    <f:media class="embed-responsive-item" file="{file}" alt="{file.properties.alternative}" title="{file.properties.title}" additionalConfig="{controls: '{data.ku_internal_media_player_controls}', autoplay: '{data.ku_internal_media_player_autoplay}', loop: '{data.ku_internal_media_player_loop}', muted: 'muted', playsinline: '1'}" />
                 </div>
                 <f:if condition="{file.properties.description}">
                     <figcaption class="caption">

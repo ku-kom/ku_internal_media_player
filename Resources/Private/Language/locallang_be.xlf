@@ -18,6 +18,9 @@
         <trans-unit id="autoplay" resname="autoplay">
             <source>Autoplay</source>
         </trans-unit>
+        <trans-unit id="controls" resname="controls">
+            <source>Controls</source>
+        </trans-unit>
         </body>
     </file>
 </xliff>

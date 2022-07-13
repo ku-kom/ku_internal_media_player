@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const lang = document.documentElement.lang;
     let translations;
-    if (lang === 'da') {
+    if (lang === 'da-DK') {
         translations = {
             'pause': 'Stop afspilning (brug Enter tast)',
             'play': 'Afspil (brug Enter tast)'
@@ -29,7 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!videos) {
         return;
     }
-    const button = `<button aria-label="${translations.pause}" aria-pressed="false" class="video-button" type="button"></button>`;
+    const play = 'bi-fill-play';
+    const pause = 'bi-fill-pause';
+    const button = `<button aria-pressed="false" class="video-button" type="button"><span class="visually-hidden">${translations.pause}</span></button>`;
 
     class Video {
         constructor(video) {
@@ -37,9 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Append button
             this.videoContainer.insertAdjacentHTML('beforeend', button);
             this.video = this.videoContainer.querySelector('video');
-            // Remove controls
-            // this.video.removeAttribute('controls'); 
             this.btn = this.videoContainer.querySelector('.video-button');
+            this.btnText = this.btn.querySelector('span');
+            const state = this.video.getAttribute('autoplay');
+            (state ==! '') ? this.btn.classList.add(pause) : this.btn.classList.add(play);
+            
             this.prefersReducedMotion();
             this.addEventListeners();
         }
@@ -60,18 +64,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         playVideo() {
             this.video.play();
-            this.btn.classList.remove('pause-fill');
-            this.btn.classList.add('play-fill');
+            this.btn.classList.remove(pause);
+            this.btn.classList.add(play);
             this.btn.setAttribute('aria-pressed', 'false');
-            this.btn.setAttribute('aria-label', translations.pause);
+            this.btnText.innerText = translations.pause;
         }
 
         pauseVideo() {
             this.video.pause();
-            this.btn.classList.remove('play-fill');
-            this.btn.classList.add('pause-fill');
+            this.btn.classList.remove(play);
+            this.btn.classList.add(pause);
             this.btn.setAttribute('aria-pressed', 'true');
-            this.btn.setAttribute('aria-label', translations.play);
+            this.btnText.innerText = translations.play;
 
         }
 

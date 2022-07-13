@@ -21,40 +21,55 @@ defined('TYPO3_MODE') or die();
     'after'
 );
 
-// \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', [
-//     'ku_internal_media_player_autoplay' => [
-//         'exclude' => 0,
-//         'label' => 'LLL:EXT:ku_internal_media_player/Resources/Private/Language/locallang_be.xlf:autoplay',
-//         'config' => [
-//             'type' => 'check',
-//             'renderType' => 'checkboxToggle',
-//             'items' => [
-//                 [
-//                     0 => '0',
-//                     1 => '1',
-//                     'labelChecked' => 'Enabled',
-//                     'labelUnchecked' => 'Disabled',
-//                 ],
-//             ],
-//         ],
-//     ],
-//     'ku_internal_media_player_loop' => [
-//         'exclude' => 0,
-//         'label' => 'LLL:EXT:ku_internal_media_player/Resources/Private/Language/locallang_be.xlf:loop',
-//         'config' => [
-//             'type' => 'check',
-//             'renderType' => 'checkboxToggle',
-//             'items' => [
-//                 [
-//                     0 => '0',
-//                     1 => '1',
-//                     'labelChecked' => 'Enabled',
-//                     'labelUnchecked' => 'Disabled',
-//                 ],
-//             ],
-//         ],
-//     ],
-// ]);
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', [
+    // Autoplay toggle button
+    'ku_internal_media_player_autoplay' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:ku_internal_media_player/Resources/Private/Language/locallang_be.xlf:autoplay',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [
+                [
+                    0 => '0',
+                    1 => '1',
+                ],
+            ],
+        ],
+    ],
+    // Loop toggle button
+    'ku_internal_media_player_loop' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:ku_internal_media_player/Resources/Private/Language/locallang_be.xlf:loop',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [
+                [
+                    0 => '0',
+                    1 => '1',
+                ],
+            ],
+            'default' => '1',
+        ],
+    ],
+    // Controls toggle button
+    'ku_internal_media_player_controls' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:ku_internal_media_player/Resources/Private/Language/locallang_be.xlf:controls',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [
+                [
+                    0 => '0',
+                    1 => '1',
+                ],
+            ],
+            'default' => '1',
+        ],
+    ],
+]);
 
 // KU internal media selector
 $ku_internal_media_player = [
@@ -64,6 +79,9 @@ $ku_internal_media_player = [
         --palette--;;headers,
     --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,
         assets,
+        ku_internal_media_player_autoplay,
+        ku_internal_media_player_loop,
+        ku_internal_media_player_controls,
     --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
         --palette--;;frames,
         --palette--;;appearanceLinks,
@@ -88,7 +106,12 @@ $ku_internal_media_player = [
                         ]
                     ]
                 ],
-                'overrideChildTca' => [
+                'overrideChildTca' => [ // Remove options like "Autoplay"
+                    'types' => [
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+                            'showitem' => 'title,description,--palette--;;filePalette'
+                        ],
+                    ],
                     'columns' => [
                         'uid_local' => [
                             'config' => [
