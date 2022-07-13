@@ -2,6 +2,10 @@
     "name": "university-of-copenhagen/ku-internal-media-player",
     "type": "typo3-cms-extension",
     "description": "Plays (and loops) internal media files such as .mp4, .ogg, etc. including only play/pause button.",
+    "authors": [{
+        "name": "Nanna Ellegaard",
+        "role": "Developer"
+    }],
     "homepage": "https://www.ku.dk/",
     "license": ["GPL-2.0-or-later"],
     "keywords": ["TYPO3 CMS"],
