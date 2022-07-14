@@ -9,7 +9,9 @@
 <f:section name="InternalMediaPlayer">
     <f:if condition="{files}">
         <f:for each="{files}" as="file" iteration="fileIteration">
-            <figure class="video">
+            <f:variable name="withControls">{f:if(condition: '{data.ku_internal_media_player_controls} == 0', then:'controls-disabled')}</f:variable>
+            <h2>{data.header}</h2>
+            <figure class="video {withControls}">
                 <div class="embed embed-responsive embed-responsive-16by9">
                     <f:media class="embed-responsive-item" file="{file}" alt="{file.properties.alternative}" title="{file.properties.title}" additionalConfig="{controls: '{data.ku_internal_media_player_controls}', autoplay: '{data.ku_internal_media_player_autoplay}', loop: '{data.ku_internal_media_player_loop}', muted: 'muted', playsinline: '1'}" />
                 </div>
@@ -21,7 +23,7 @@
             </figure>
         </f:for>
     </f:if>
-</f:section>
-<f:section name="FooterAssets">
-    <f:asset.script identifier="internalMediaPlayer" src="EXT:ku_internal_media_player/Resources/Public/JavaScript/Dist/ku-internal-media-player.min.js" />
+    <f:if condition="{data.ku_internal_media_player_controls} == 0">
+        <f:asset.script identifier="internalMediaPlayer" src="EXT:ku_internal_media_player/Resources/Public/JavaScript/Dist/ku-internal-media-player.min.js" />
+    </f:if>
 </f:section>

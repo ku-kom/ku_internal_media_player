@@ -3,22 +3,47 @@
 #
 TCEFORM {
     tt_content {
-        header_position {
-           types {
-                ku_internal_media_player {
-                    removeItems = center
-                }
-           }
-        }
+        
         header {
-             types {
+            types {
                 ku_internal_media_player {
                     config {
-                        eval = required
-                        max = 100
+                        max = 150
                     }
                 }
-           }
+            }
+        }
+
+        subheader {
+            types {
+                ku_internal_media_player {
+                    disabled = 1
+                }
+            }
+        }
+
+        header_position {
+            types {
+                ku_internal_media_player {
+                    disabled = 1
+                }
+            }
+        }
+
+        date {
+            types {
+                ku_internal_media_player {
+                    disabled = 1
+                }
+            }
+        }
+
+        header_link {
+            types {
+                ku_internal_media_player {
+                    disabled = 1
+                }
+            }
         }
 
         header_layout {
@@ -38,6 +63,13 @@ TCEFORM {
         }
 
         background_image_options {
+            types {
+                ku_internal_media_player {
+                    disabled = 1
+                }
+            }
+        }
+        linkToTop {
             types {
                 ku_internal_media_player {
                     disabled = 1

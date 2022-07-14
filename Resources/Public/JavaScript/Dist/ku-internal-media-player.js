@@ -1,7 +1,7 @@
 /*
  * Script for html5 multiple videos - inserts and toggles play/pause button, nothing else.
  * Markup:
- * <figure class="video">
+ * <figure class="video controls-disabled">
  *  <video autoplay="" class="video" loop="" muted="" playsinline="" poster="" preload="metadata">
  *     <source src="file-path.mp4">
  *   </video>
@@ -25,12 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const videos = document.querySelectorAll('figure.video');
+    const videos = document.querySelectorAll('figure.video.controls-disabled');
     if (!videos) {
         return;
     }
-    const play = 'bi-fill-play';
-    const pause = 'bi-fill-pause';
+    const play = 'bi-play-fill';
+    const pause = 'bi-pause-fill';
     const button = `<button aria-pressed="false" class="video-button" type="button"><span class="visually-hidden">${translations.pause}</span></button>`;
 
     class Video {
@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.btn = this.videoContainer.querySelector('.video-button');
             this.btnText = this.btn.querySelector('span');
             const state = this.video.getAttribute('autoplay');
+            // Toggle icon according to autoplay state
             (state ==! '') ? this.btn.classList.add(pause) : this.btn.classList.add(play);
             
             this.prefersReducedMotion();
