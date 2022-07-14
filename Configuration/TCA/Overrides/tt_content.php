@@ -102,7 +102,7 @@ $ku_internal_media_player = [
                 'filter' => [
                     0 => [
                         'parameters' => [
-                            'allowedFileExtensions' => 'mp4,ogg,webm,wav,avi'
+                            'allowedFileExtensions' => 'mp4,ogg,webm'
                         ]
                     ]
                 ],
@@ -116,7 +116,7 @@ $ku_internal_media_player = [
                         'uid_local' => [
                             'config' => [
                                 'appearance' => [
-                                    'elementBrowserAllowed' => 'mp4,ogg,webm,wav,avi'
+                                    'elementBrowserAllowed' => 'mp4,ogg,webm'
                                 ]
                             ]
                         ]
