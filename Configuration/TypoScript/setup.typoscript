@@ -1,7 +1,7 @@
 ################################
 #### INTERNAL MEDIA PLAYER #####
 ################################
-# tt_content.ku_internal_media_player >
+tt_content.ku_internal_media_player >
 tt_content.ku_internal_media_player =< lib.contentElement
 tt_content.ku_internal_media_player {
 	templateName = InternalMediaPlayer
