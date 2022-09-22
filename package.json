@@ -8,7 +8,7 @@
 		"concat": "npm-run-all concat:js",
 		"lint": "npm-run-all lint:**",
 		"lint:js": "eslint --cache --cache-location .cache/.eslintcache",
-		"minify:js": "terser --compress passes=2 --toplevel --comments \"/^!/\" --source-map \"root='Resources/Public/JavaScript/Dist',url='Resources/Public/JavaScript/Dist/ku-internal-media-player.min.js.map'\" --output \"Resources/Public/JavaScript/Dist/ku-internal-media-player.min.js\" \"Resources/Public/JavaScript/Dist/ku-internal-media-player.js\"",
+		"minify:js": "terser --compress passes=2 --toplevel --comments \"/^!/\" --source-map \"root='Resources/Public/JavaScript/Dist',url='ku-internal-media-player.min.js.map'\" --output \"Resources/Public/JavaScript/Dist/ku-internal-media-player.min.js\" \"Resources/Public/JavaScript/Dist/ku-internal-media-player.js\"",
 		"build:js": "npm-run-all lint && npm-run-all concat:js && npm-run-all minify:js",
 		"build": "npm-run-all --aggregate-output --parallel build:js",
 		"watch:js": "onchange \"Resources/Public/JavaScript/Src/*.js\" -- npm-run-all build:js",
@@ -21,12 +21,12 @@
 	"author": "Nanna Ellegaard",
 	"license": "ISC",
 	"devDependencies": {
-		"autoprefixer": "10.4.8",
-		"eslint": "^8.21.0",
+		"autoprefixer": "10.4.12",
+		"eslint": "^8.23.1",
 		"globcat": "^2.0.1",
 		"npm-run-all": "^4.1.5",
 		"onchange": "^7.1.0",
-		"terser": "^5.14.2",
-		"uglify-js": "^3.16.3"
+		"terser": "^5.15.0",
+		"uglify-js": "^3.17.1"
 	}
 }
