@@ -3,6 +3,24 @@
 #
 TCEFORM {
     tt_content {
+
+        assets {
+            types {
+                ku_internal_media_player {
+                    # Rename "media" label
+                    label = LLL:EXT:ku_internal_media_player/Resources/Private/Language/locallang_be.xlf:video_upload
+                }
+            }
+        }
+
+        image {
+            types {
+                ku_internal_media_player {
+                    # Rename "image" label
+                    label = LLL:EXT:ku_internal_media_player/Resources/Private/Language/locallang_be.xlf:poster
+                }
+            }
+        }
         
         header {
             types {

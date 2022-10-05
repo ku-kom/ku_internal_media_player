@@ -18,6 +18,13 @@ tt_content.ku_internal_media_player {
 		10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
 		10 {
 			references.fieldName = assets
+			# as = assets
 		}
+		20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+        20 {
+            references.fieldName = image
+            as = images
+        }
+
 	}
 }

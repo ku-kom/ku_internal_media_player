@@ -6,14 +6,15 @@
         <f:render section="InternalMediaPlayer" arguments="{_all}" />
     </f:section>
 </f:spaceless>
+
 <f:section name="InternalMediaPlayer">
     <f:if condition="{files}">
         <f:for each="{files}" as="file" iteration="fileIteration">
-            <f:variable name="withControls">{f:if(condition: '{data.ku_internal_media_player_controls} == 0', then:'controls-disabled')}</f:variable>
+            
             <h2>{data.header}</h2>
             <figure class="video {withControls}">
                 <div class="embed embed-responsive embed-responsive-16by9">
-                    <f:media class="embed-responsive-item" file="{file}" alt="{file.properties.alternative}" title="{file.properties.title}" additionalConfig="{controls: '{data.ku_internal_media_player_controls}', autoplay: '{data.ku_internal_media_player_autoplay}', loop: '{data.ku_internal_media_player_loop}', muted: 'muted', playsinline: '1'}" />
+                    <f:media class="embed-responsive-item" file="{file}" additionalConfig="{controls: '{data.ku_internal_media_player_controls}', autoplay: '{data.ku_internal_media_player_autoplay}', loop: '{data.ku_internal_media_player_loop}', muted: 'muted', playsinline: '1', poster: '{images.0.originalFile}'}" />
                 </div>
                 <f:if condition="{file.properties.description}">
                     <figcaption class="caption">

@@ -9,11 +9,17 @@
            <trans-unit id="title" resname="title">
             <source>KU Internal Media Player</source>
         </trans-unit>
+        <trans-unit id="video_upload" resname="video_upload">
+            <source>Add video file</source>
+        </trans-unit>
         <trans-unit id="description" resname="description">
             <source>Plays (and loops) internal media files such as .mp4, .ogg, etc. including only play/pause button.</source>
         </trans-unit>
         <trans-unit id="loop" resname="loop">
             <source>Loop - infinite playing</source>
+        </trans-unit>
+        <trans-unit id="poster" resname="poster">
+            <source>Video poster image</source>
         </trans-unit>
         <trans-unit id="autoplay" resname="autoplay">
             <source>Autoplay</source>

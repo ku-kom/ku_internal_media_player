@@ -8,6 +8,11 @@
 
 defined('TYPO3_MODE') or die();
 
+// Add Content Element
+if (!is_array($GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player'] ?? false)) {
+    $GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player'] = [];
+}
+
 // KU internal media player CType select
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
     'tt_content',
@@ -35,6 +40,7 @@ defined('TYPO3_MODE') or die();
                     1 => '1',
                 ],
             ],
+            'default' => '1',
         ],
     ],
     // Loop toggle button
@@ -66,19 +72,21 @@ defined('TYPO3_MODE') or die();
                     1 => '1',
                 ],
             ],
-            'default' => '1',
+            'default' => '0',
         ],
     ],
 ]);
 
-// KU internal media selector
-$ku_internal_media_player = [
-    'showitem' => '
-    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+// Configure element type
+$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player'] = array_replace_recursive(
+    $GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player'],
+    [
+        'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
         --palette--;;general,
         --palette--;;headers,
     --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,
-        assets,
+        assets,image,
         ku_internal_media_player_autoplay,
         ku_internal_media_player_loop,
         ku_internal_media_player_controls,
@@ -95,36 +103,31 @@ $ku_internal_media_player = [
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
         rowDescription,
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
-    ',
-    'columnsOverrides' => [
-        'assets' => [
-            'config' => [
-                'filter' => [
-                    0 => [
-                        'parameters' => [
-                            'allowedFileExtensions' => 'mp4,ogg,webm'
-                        ]
-                    ]
-                ],
-                'overrideChildTca' => [ // Remove options like "Autoplay"
-                    'types' => [
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
-                            'showitem' => 'title,description,--palette--;;filePalette'
-                        ],
-                    ],
-                    'columns' => [
-                        'uid_local' => [
-                            'config' => [
-                                'appearance' => [
-                                    'elementBrowserAllowed' => 'mp4,ogg,webm'
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ]
+        '
     ]
+);
+
+### IMAGES ###
+// Assign allowed image file types
+$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['image']['config']['overrideChildTca']['columns']['uid_local']['config']['appearance']['elementBrowserAllowed'] = 'jpg,jpeg,png';
+
+// Max one image.
+$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['image']['config'] = [
+    'maxitems' => 1
 ];
 
-$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player'] = $ku_internal_media_player;
+// Remove all fields in image.sys_file_reference (title, description)
+$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['image']['config']['overrideChildTca']['types'][\TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE]['showitem'] = '--palette--;;filePalette';
+
+### VIDEO ###
+// Assign allowed media file types
+$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['assets']['config']['overrideChildTca']['columns']['uid_local']['config']['appearance']['elementBrowserAllowed'] = 'mp4,ogg,webm';
+
+// Remove all fields in assets.sys_file_reference (title, description)
+$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['assets']['config']['overrideChildTca']['types'][\TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO]['showitem'] = '--palette--;;filePalette';
+
+// Make video upload mandatory - and just one.
+$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['assets']['config'] = [
+    'minitems' => 1,
+    'maxitems' => 1
+];
