@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.video = this.videoContainer.querySelector('video');
             this.btn = this.videoContainer.querySelector('.video-button');
             this.btnText = this.btn.querySelector('span');
-            const state = this.video.getAttribute('autoplay');
+            let state = this.video.getAttribute('autoplay');
             // Toggle icon according to autoplay state
             (state ==! '') ? this.btn.classList.add(pause) : this.btn.classList.add(play);
             

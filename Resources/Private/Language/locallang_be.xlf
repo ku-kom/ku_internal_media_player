@@ -25,7 +25,10 @@
             <source>Autoplay</source>
         </trans-unit>
         <trans-unit id="controls" resname="controls">
-            <source>Controls</source>
+            <source>Display full controls</source>
+        </trans-unit>
+        <trans-unit id="mute" resname="mute">
+            <source>Start muted</source>
         </trans-unit>
         </body>
     </file>

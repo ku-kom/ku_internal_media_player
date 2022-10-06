@@ -75,6 +75,22 @@ if (!is_array($GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']
             'default' => '0',
         ],
     ],
+    // Mute toggle button
+    'ku_internal_media_player_mute' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:ku_internal_media_player/Resources/Private/Language/locallang_be.xlf:mute',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [
+                [
+                    0 => '0',
+                    1 => '1',
+                ],
+            ],
+            'default' => '1',
+        ],
+    ],
 ]);
 
 // Configure element type
@@ -85,24 +101,25 @@ $GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player'] = array_repla
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
         --palette--;;general,
         --palette--;;headers,
-    --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,
-        assets,image,
-        ku_internal_media_player_autoplay,
-        ku_internal_media_player_loop,
-        ku_internal_media_player_controls,
-    --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
-        --palette--;;frames,
-        --palette--;;appearanceLinks,
-    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
-        --palette--;;language,
-    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-        --palette--;;hidden,
-        --palette--;;access,
-    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
-        categories,
-    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
-        rowDescription,
-    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
+        --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,
+            assets,image,
+            ku_internal_media_player_autoplay,
+            ku_internal_media_player_loop,
+            ku_internal_media_player_mute,
+            ku_internal_media_player_controls,
+        --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+            --palette--;;language,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,
+            --palette--;;access,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
+            categories,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+            rowDescription,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
         '
     ]
 );
@@ -111,20 +128,24 @@ $GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player'] = array_repla
 // Assign allowed image file types
 $GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['image']['config']['overrideChildTca']['columns']['uid_local']['config']['appearance']['elementBrowserAllowed'] = 'jpg,jpeg,png';
 
+$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['image']['config']['filter'][0]['parameters']['allowedFileExtensions'] = 'jpg,jpeg,png';
+
+// Remove all fields in image.sys_file_reference (title, description)
+$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['image']['config']['overrideChildTca']['types'][\TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE]['showitem'] = '--palette--;;filePalette';
+
 // Max one image.
 $GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['image']['config'] = [
     'maxitems' => 1
 ];
 
-// Remove all fields in image.sys_file_reference (title, description)
-$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['image']['config']['overrideChildTca']['types'][\TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE]['showitem'] = '--palette--;;filePalette';
-
 ### VIDEO ###
 // Assign allowed media file types
 $GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['assets']['config']['overrideChildTca']['columns']['uid_local']['config']['appearance']['elementBrowserAllowed'] = 'mp4,ogg,webm';
 
-// Remove all fields in assets.sys_file_reference (title, description)
-$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['assets']['config']['overrideChildTca']['types'][\TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO]['showitem'] = '--palette--;;filePalette';
+$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['assets']['config']['filter'][0]['parameters']['allowedFileExtensions'] = 'mp4,ogg,webm';
+
+// Remove all fields in assets.sys_file_reference but title, description
+$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['assets']['config']['overrideChildTca']['types'][\TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO]['showitem'] = 'title,description,,--palette--;;filePalette';
 
 // Make video upload mandatory - and just one.
 $GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['assets']['config'] = [
