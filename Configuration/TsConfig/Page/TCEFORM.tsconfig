@@ -21,6 +21,16 @@ TCEFORM {
                 }
             }
         }
+
+        description {
+            types {
+                ku_internal_media_player {
+                    config {
+                        max = 120
+                    }
+                }
+            }
+        }
         
         header {
             types {

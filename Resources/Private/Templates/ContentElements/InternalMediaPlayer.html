@@ -12,11 +12,11 @@
         <h2>{data.header}</h2>
         <figure class="video {withControls}">
             <div class="embed embed-responsive embed-responsive-16by9">
-                <f:media class="embed-responsive-item" file="{assets.0}" additionalConfig="{controls: '{data.ku_internal_media_player_controls}', autoplay: '{data.ku_internal_media_player_autoplay}', loop: '{data.ku_internal_media_player_loop}', muted: '{data.ku_internal_media_player_mute}', playsinline: '1', poster: '{images.0.publicUrl}'}" />
+                <f:media class="embed-responsive-item" file="{assets.0}" additionalConfig="{controls: '{data.ku_internal_media_player_controls}', autoplay: '{data.ku_internal_media_player_autoplay}', loop: '{data.ku_internal_media_player_loop}', muted: '{data.ku_internal_media_player_mute}', playsinline: '1', poster: '{images.0.publicUrl}'}" title="{assets.0.properties.title}" />
             </div>
             <f:if condition="{assets.0.properties.description}">
                 <figcaption class="caption">
-                    <f:format.nl2br>{file.properties.description}</f:format.nl2br>
+                    <f:format.nl2br>{assets.0.properties.description}</f:format.nl2br>
                 </figcaption>
             </f:if>
         </figure>

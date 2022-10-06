@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const play = 'bi-play-fill';
     const pause = 'bi-pause-fill';
-    const button = `<button aria-pressed="false" class="video-button" type="button"><span class="visually-hidden">${translations.pause}</span></button>`;
+    const button = `<button aria-pressed="false" class="video-button bi" type="button"><span class="visually-hidden">${translations.pause}</span></button>`;
 
     class Video {
         constructor(video) {
@@ -41,10 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
             this.video = this.videoContainer.querySelector('video');
             this.btn = this.videoContainer.querySelector('.video-button');
             this.btnText = this.btn.querySelector('span');
-            let state = this.video.getAttribute('autoplay');
-            // Toggle icon according to autoplay state
+            const state = this.video.hasAttribute('autoplay');
+            // Toggle icon according to initial autoplay state
             (state ==! '') ? this.btn.classList.add(pause) : this.btn.classList.add(play);
-            
             this.prefersReducedMotion();
             this.addEventListeners();
         }
@@ -65,19 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         playVideo() {
             this.video.play();
-            this.btn.classList.remove(pause);
-            this.btn.classList.add(play);
+            this.btn.classList.replace(play, pause);
             this.btn.setAttribute('aria-pressed', 'false');
             this.btnText.innerText = translations.pause;
         }
 
         pauseVideo() {
             this.video.pause();
-            this.btn.classList.remove(play);
-            this.btn.classList.add(pause);
+            this.btn.classList.replace(pause, play);
             this.btn.setAttribute('aria-pressed', 'true');
             this.btnText.innerText = translations.play;
-
         }
 
         prefersReducedMotion() {

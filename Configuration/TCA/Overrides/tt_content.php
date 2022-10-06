@@ -120,35 +120,78 @@ $GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player'] = array_repla
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
             rowDescription,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
-        '
+        ',
+        'columnsOverrides' => [
+            'bodytext' => [
+                'config' => [
+                    'enableRichtext' => true,
+                ],
+            ],
+            'image' => [
+                'config' => [
+                    'minitems' => 0,
+                    'maxitems' => 1,
+                    'filter' => [
+                        0 => [
+                            'parameters' => [
+                                'allowedFileExtensions' => 'jpg,jpeg,png',
+                            ],
+                        ],
+                    ],
+                    'overrideChildTca' => [
+                        'columns' => [
+                            'uid_local' => [
+                                'config' => [
+                                    'appearance' => [
+                                        'elementBrowserAllowed' => 'jpg,jpeg,png',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'assets' => [
+                'config' => [
+                    'minitems' => 1,
+                    'maxitems' => 1,
+                    'filter' => [
+                        0 => [
+                            'parameters' => [
+                                'allowedFileExtensions' => 'mp4,ogg,webm',
+                            ],
+                        ],
+                    ],
+                    'overrideChildTca' => [
+                        'columns' => [
+                            'uid_local' => [
+                                'config' => [
+                                    'appearance' => [
+                                        'elementBrowserAllowed' => 'mp4,ogg,webm',
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'types' => [
+                            '0' => [
+                                'showitem' => '
+                                    --palette--;;basicoverlayPalette,
+                                    --palette--;;filePalette'
+                            ],
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                                'showitem' => '
+                                --palette--;;imageoverlayPalette,
+                                --palette--;;filePalette'
+                            ],
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+                                'showitem' => '
+                                    --palette--;;,title,description,
+                                    --palette--;;filePalette'
+                            ],
+                        ],
+                    ],
+                ],
+            ]
+        ],
     ]
 );
-
-### IMAGES ###
-// Assign allowed image file types
-$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['image']['config']['overrideChildTca']['columns']['uid_local']['config']['appearance']['elementBrowserAllowed'] = 'jpg,jpeg,png';
-
-$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['image']['config']['filter'][0]['parameters']['allowedFileExtensions'] = 'jpg,jpeg,png';
-
-// Remove all fields in image.sys_file_reference (title, description)
-$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['image']['config']['overrideChildTca']['types'][\TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE]['showitem'] = '--palette--;;filePalette';
-
-// Max one image.
-$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['image']['config'] = [
-    'maxitems' => 1
-];
-
-### VIDEO ###
-// Assign allowed media file types
-$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['assets']['config']['overrideChildTca']['columns']['uid_local']['config']['appearance']['elementBrowserAllowed'] = 'mp4,ogg,webm';
-
-$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['assets']['config']['filter'][0]['parameters']['allowedFileExtensions'] = 'mp4,ogg,webm';
-
-// Remove all fields in assets.sys_file_reference but title, description
-$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['assets']['config']['overrideChildTca']['types'][\TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO]['showitem'] = 'title,description,,--palette--;;filePalette';
-
-// Make video upload mandatory - and just one.
-$GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player']['columnsOverrides']['assets']['config'] = [
-    'minitems' => 1,
-    'maxitems' => 1
-];
