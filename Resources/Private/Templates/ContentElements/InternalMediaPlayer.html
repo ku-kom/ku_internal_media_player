@@ -9,7 +9,9 @@
 <f:section name="InternalMediaPlayer">
     <f:variable name="withControls">{f:if(condition: '{data.ku_internal_media_player_controls} == 0', then:'controls-disabled')}</f:variable>
     <f:if condition="{assets}">
-        <h2>{data.header}</h2>
+        <f:if condition="{data.header}">
+            <h2>{data.header}</h2>
+        </f:if>
         <figure class="video {withControls}">
             <div class="embed embed-responsive embed-responsive-16by9">
                 <f:media class="embed-responsive-item" file="{assets.0}" additionalConfig="{controls: '{data.ku_internal_media_player_controls}', autoplay: '{data.ku_internal_media_player_autoplay}', loop: '{data.ku_internal_media_player_loop}', muted: '{data.ku_internal_media_player_mute}', playsinline: '1', poster: '{images.0.publicUrl}'}" title="{assets.0.properties.title}" />
