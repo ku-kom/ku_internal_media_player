@@ -1,0 +1,23 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:variable name="withControls">{f:if(condition: '{data.ku_internal_media_player_controls} == 0', then:'controls-disabled')}</f:variable>
+
+    <f:if condition="{assets}">
+        <f:if condition="{data.header}">
+            <h2>{data.header}</h2>
+        </f:if>
+        <figure class="video {withControls}">
+            <div class="embed embed-responsive embed-responsive-16by9">
+                <f:media class="embed-responsive-item" file="{assets.0}" additionalConfig="{controls: '{data.ku_internal_media_player_controls}', autoplay: '{data.ku_internal_media_player_autoplay}', loop: '{data.ku_internal_media_player_loop}', muted: '{data.ku_internal_media_player_mute}', playsinline: '1', poster: '{images.0.publicUrl}'}" title="{assets.0.properties.title}" />
+            </div>
+            <f:if condition="{assets.0.properties.description}">
+                <figcaption class="caption">
+                    <f:format.nl2br>{assets.0.properties.description}</f:format.nl2br>
+                </figcaption>
+            </f:if>
+        </figure>
+    </f:if>
+    <f:if condition="{data.ku_internal_media_player_controls} == 0">
+        <f:asset.script identifier="internalMediaPlayer" src="EXT:ku_internal_media_player/Resources/Public/JavaScript/Dist/ku-internal-media-player.min.js" />
+    </f:if>
+</html>
