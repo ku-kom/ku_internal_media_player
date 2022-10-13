@@ -25,7 +25,7 @@
             <source>Autoplay</source>
         </trans-unit>
         <trans-unit id="controls" resname="controls">
-            <source>Display full controls</source>
+            <source>Display default video controls</source>
         </trans-unit>
         <trans-unit id="mute" resname="mute">
             <source>Start muted</source>

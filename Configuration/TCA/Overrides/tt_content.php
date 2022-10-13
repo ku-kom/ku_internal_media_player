@@ -122,11 +122,6 @@ $GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player'] = array_repla
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
         ',
         'columnsOverrides' => [
-            'bodytext' => [
-                'config' => [
-                    'enableRichtext' => true,
-                ],
-            ],
             'image' => [
                 'config' => [
                     'minitems' => 0,
@@ -146,6 +141,18 @@ $GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player'] = array_repla
                                         'elementBrowserAllowed' => 'jpg,jpeg,png',
                                     ],
                                 ],
+                            ],
+                        ],
+                        'types' => [
+                            '0' => [
+                                'showitem' => '
+                                    --palette--;;basicoverlayPalette,
+                                    --palette--;;filePalette'
+                            ],
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                                'showitem' => '
+                                    crop,
+                                    --palette--;;filePalette'
                             ],
                         ],
                     ],
@@ -178,14 +185,9 @@ $GLOBALS['TCA']['tt_content']['types']['ku_internal_media_player'] = array_repla
                                     --palette--;;basicoverlayPalette,
                                     --palette--;;filePalette'
                             ],
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                                'showitem' => '
-                                --palette--;;imageoverlayPalette,
-                                --palette--;;filePalette'
-                            ],
                             \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
                                 'showitem' => '
-                                    --palette--;;,title,description,
+                                    title,description,
                                     --palette--;;filePalette'
                             ],
                         ],
