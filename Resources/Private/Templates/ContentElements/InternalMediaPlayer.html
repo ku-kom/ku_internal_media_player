@@ -2,6 +2,14 @@
 <f:layout name="Default" />
 <f:section name="Header" />
 <f:spaceless>
+    <f:section name="HeaderAssets">
+        <script>
+            let translations = {
+                pause: '<f:translate key="LLL:EXT:ku_internal_media_player/Resources/Private/Language/locallang.xlf:pause" />',
+                play: '<f:translate key="LLL:EXT:ku_internal_media_player/Resources/Private/Language/locallang.xlf:play" />',
+            };
+        </script>
+    </f:section>
     <f:section name="Main">
         <f:render partial="VideoElement" arguments="{_all}" />
     </f:section>

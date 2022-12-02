@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file source-language="en" datatype="plaintext" original="messages" date="2022-06-15UTC07:12:050">
+    <file source-language="en" datatype="plaintext" original="messages" date="2022-07-15UTC07:12:050">
         <header>
             <authorName>Nanna Ellegaard</authorName>
             <authorEmail>nel@adm.ku.dk</authorEmail>
@@ -8,9 +8,11 @@
         <body>
         <trans-unit id="pause">
             <source>Pause (use Enter key)</source>
+            <target>Stop afspilning (brug Enter tast)</target>
         </trans-unit>
         <trans-unit id="play">
             <source>Play (use Enter bar)</source>
+            <target>Afspil (brug Enter tast)</target>
         </trans-unit>
         </body>
     </file>

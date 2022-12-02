@@ -11,20 +11,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
-    const lang = document.documentElement.lang;
-    let translations;
-    if (lang === 'da-DK') {
-        translations = {
-            'pause': 'Stop afspilning (brug Enter tast)',
-            'play': 'Afspil (brug Enter tast)'
-        }
-    } else {
-        translations = {
-            'pause': 'Pause (use Enter key)',
-            'play': 'Play (use Enter bar)'
-        }
-    }
-
     const videos = document.querySelectorAll('figure.video.controls-disabled');
     if (!videos) {
         return;
