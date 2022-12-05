@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
             this.video = this.videoContainer.querySelector('video');
             this.btn = this.videoContainer.querySelector('.video-button');
             this.btnText = this.btn.querySelector('span');
+            // remove attribute "controls" since we can't do it in fluid's  <f:media>
+            this.video.removeAttribute('controls');
             const state = this.video.hasAttribute('autoplay');
             // Toggle icon according to initial autoplay state
             (state ==! '') ? this.btn.classList.add(pause) : this.btn.classList.add(play);
