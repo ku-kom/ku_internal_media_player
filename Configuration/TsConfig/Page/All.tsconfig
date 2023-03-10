@@ -3,5 +3,4 @@
 #
 
 @import 'EXT:ku_internal_media_player/Configuration/TsConfig/Page/TCEFORM.tsconfig'
-@import 'EXT:ku_internal_media_player/Configuration/TsConfig/Page/TCEMAIN.tsconfig'
 @import 'EXT:ku_internal_media_player/Configuration/TsConfig/Page/Mod/WebLayout/Wizards/InternalMediaPlayer.tsconfig'
